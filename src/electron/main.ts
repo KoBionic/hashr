@@ -1,6 +1,6 @@
-import { app, BrowserWindow, screen } from 'electron';
-import * as path from 'path';
-import * as url from 'url';
+import { app, BrowserWindow, Menu, screen } from 'electron';
+import path from 'path';
+import url from 'url';
 
 let mainWindow: Electron.BrowserWindow;
 const WINDOW_HEIGHT = 650;
@@ -47,6 +47,26 @@ function createWindow() {
     mainWindow.on('closed', () => {
         mainWindow = undefined;
     });
+
+    if (process.platform === 'darwin') {
+        // Create our menu entries so that we can use MAC shortcuts
+        Menu.setApplicationMenu(Menu.buildFromTemplate([
+            {
+                label: 'Edit',
+                submenu: [
+                    { role: 'undo' },
+                    { role: 'redo' },
+                    { type: 'separator' },
+                    { role: 'cut' },
+                    { role: 'copy' },
+                    { role: 'paste' },
+                    { role: 'pasteandmatchstyle' },
+                    { role: 'delete' },
+                    { role: 'selectall' }
+                ]
+            }
+        ]));
+    }
 }
 
 app.on('ready', createWindow);

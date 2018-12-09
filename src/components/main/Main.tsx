@@ -2,17 +2,13 @@ import { Button, Step, StepContent, StepLabel, Stepper } from '@material-ui/core
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import GetAppIcon from '@material-ui/icons/GetApp';
 import RefreshIcon from '@material-ui/icons/Refresh';
-import * as React from 'react';
-
+import React from 'react';
 import { FileService } from '../../electron/services';
 import { CommonTypes, HashingTypes } from '../../models';
 import AlgorithmChooser from './algorithm-chooser/AlgorithmChooser';
 import FileChooser from './file-chooser/FileChooser';
 import HashingProcess from './hashing-process/HashingProcess';
 import * as styles from './Main.css';
-
-type Props = {
-};
 
 type State = {
     activeStep: number;
@@ -24,25 +20,12 @@ type State = {
     isFinished: boolean;
 };
 
-/**
- * Main component displaying a stepper.
- *
- * @export
- * @class Main
- * @extends {React.Component<Props, State>}
- */
-export default class Main extends React.Component<Props, State> {
+class Main extends React.Component<object, State> {
 
     public state: State;
     public titles: string[];
 
-    /**
-     * Creates an instance of Main.
-     *
-     * @param {Props} props
-     * @memberof Main
-     */
-    constructor(props: Props) {
+    constructor(props: object) {
         super(props);
         this.state = {
             activeStep: 0,
@@ -56,32 +39,17 @@ export default class Main extends React.Component<Props, State> {
             'Select Hashing Algorithm',
             'Process',
         ];
-        this.changeStep = this.changeStep.bind(this);
-        this.handleDrag = this.handleDrag.bind(this);
-        this.handleDrop = this.handleDrop.bind(this);
     }
 
-    /**
-     * ComponentDidMount lifecycle override.
-     *
-     * @memberof Main
-     */
-    public componentDidMount(): void {
+    componentDidMount = () => {
         window.addEventListener('drop', e => this.handleDrag(e, false), false);
         window.addEventListener('dragenter', e => this.handleDrag(e, true), false);
         window.addEventListener('dragleave', e => { if (!e.clientX && !e.clientY) this.handleDrag(e, false); }, false);
         window.addEventListener('keydown', e => this.handleKeydown(e), false);
-    }
+    };
 
-    /**
-     * Renders the component.
-     *
-     * @returns {JSX.Element} the component JSX
-     * @memberof Main
-     */
-    public render(): JSX.Element {
+    render = () => {
         const { activeStep } = this.state;
-
         return (
             <div>
                 <Stepper
@@ -141,16 +109,9 @@ export default class Main extends React.Component<Props, State> {
                 </Stepper>
             </div>
         );
-    }
+    };
 
-    /**
-     * Changes the active step to given value or resets it if undefined.
-     *
-     * @private
-     * @param {('+' | '-')} [selector] + for next step or - for previous one
-     * @memberof Main
-     */
-    private changeStep(selector?: '+' | '-'): void {
+    private changeStep = (selector?: '+' | '-') => {
         if (this.state.canContinue) {
             const newStep = selector === '+'
                 ? this.state.activeStep < this.titles.length - 1
@@ -165,55 +126,32 @@ export default class Main extends React.Component<Props, State> {
                 isFinished: false,
             });
         }
-    }
+    };
 
-    /**
-     * Handles drag events.
-     *
-     * @private
-     * @param {Event} event the drag event
-     * @param {boolean} isDragged true if is dragged, false otherwise
-     * @memberof Main
-     */
-    private handleDrag(event: Event, isDragged: boolean): void {
+    private handleDrag = (event: Event, isDragged: boolean) => {
         event.preventDefault();
         this.setState({ isDragged: isDragged });
-    }
+    };
 
-    /**
-     * Handles drop events.
-     *
-     * @private
-     * @param {React.DragEvent<any>} event the drop event
-     * @memberof FileChooser
-     */
-    private handleDrop(event: React.DragEvent<any>): void {
+    private handleDrop = (event: React.DragEvent<any>) => {
         event.preventDefault();
         const dropped = event.dataTransfer.files[0];
         const file = {
-            lastModifiedDate: dropped.lastModifiedDate,
+            lastModified: dropped.lastModified,
             name: dropped.name,
             path: dropped.path,
             size: dropped.size,
             type: dropped.type,
         };
-
         FileService
             .isFile(file.path)
             .then(isFile => {
                 if (isFile) this.setState({ canContinue: true, chosenFile: file });
             })
             .catch();
-    }
+    };
 
-    /**
-     * Handles keyboard events.
-     *
-     * @private
-     * @param {KeyboardEvent} event the keydown event
-     * @memberof Main
-     */
-    private handleKeydown(event: KeyboardEvent): void {
+    private handleKeydown = (event: KeyboardEvent) => {
         switch (event.key) {
             case 'ArrowDown':
                 this.changeStep('+');
@@ -229,19 +167,10 @@ export default class Main extends React.Component<Props, State> {
                 break;
             default:
         }
-    }
+    };
 
-    /**
-     * Returns given step's content.
-     *
-     * @private
-     * @param {number} step the step to get content of
-     * @returns {*} the step content
-     * @memberof Main
-     */
-    private getStepContent(step: number): any {
+    private getStepContent = (step: number) => {
         let content;
-
         switch (step) {
             case 0:
                 content = (
@@ -272,8 +201,9 @@ export default class Main extends React.Component<Props, State> {
                 break;
             default:
         }
-
         return content;
-    }
+    };
 
 }
+
+export default Main;

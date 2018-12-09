@@ -1,11 +1,4 @@
-import * as ActionsService from './actions';
-import CryptoService from './crypto';
-import * as FileService from './file';
-import InfoService from './info';
-
-export {
-    ActionsService,
-    CryptoService,
-    FileService,
-    InfoService,
-};
+export * from './actions';
+export * from './crypto';
+export * from './file';
+export * from './info';

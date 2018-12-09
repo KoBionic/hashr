@@ -1,7 +1,6 @@
 import { Input, InputLabel, LinearProgress } from '@material-ui/core';
 import * as bytes from 'bytes';
 import * as React from 'react';
-
 import { CryptoService } from '../../../electron/services';
 import { CommonTypes, Events, HashingTypes, Toasts } from '../../../models';
 import { EventService } from '../../../services';
@@ -20,25 +19,12 @@ type State = {
     progress: number;
 };
 
-/**
- * Shows ongoing hashing process.
- *
- * @export
- * @class HashingProcess
- * @extends {React.Component<Props, State>}
- */
-export default class HashingProcess extends React.Component<Props, State> {
+class HashingProcess extends React.Component<Props, State> {
 
     public state: State;
 
     private cryptoService: CryptoService;
 
-    /**
-     * Creates an instance of HashingProcess.
-     *
-     * @param {Props} props
-     * @memberof HashingProcess
-     */
     constructor(props: Props) {
         super(props);
         this.state = {
@@ -49,12 +35,7 @@ export default class HashingProcess extends React.Component<Props, State> {
         this.updateProgress = this.updateProgress.bind(this);
     }
 
-    /**
-     * ComponentDidMount lifecycle override.
-     *
-     * @memberof HashingProcess
-     */
-    public componentDidMount(): void {
+    componentDidMount = () => {
         EventService.subscribe(Events.UPDATE_PROGRESS, this.updateProgress);
         this.props.onProcess(true);
         this.cryptoService
@@ -79,102 +60,84 @@ export default class HashingProcess extends React.Component<Props, State> {
             });
     }
 
-    /**
-     * ComponentWillUnmount lifecycle override.
-     *
-     * @memberof HashingProcess
-     */
-    public componentWillUnmount(): void {
+    componentWillUnmount = () => {
         EventService.unsubscribe(Events.UPDATE_PROGRESS, this.updateProgress);
     }
 
-    /**
-     * Renders the component.
-     *
-     * @returns {JSX.Element} the component JSX
-     * @memberof HashingProcess
-     */
-    public render(): JSX.Element {
-        return (
-            <div>
-                <div className={styles.progressBar}>
-                    <LinearProgress
-                        color={this.state.isError ? 'primary' : 'secondary'}
-                        style={
-                            this.state.isError ? {
-                                backgroundColor: 'var(--md-primary-red)',
-                                filter: 'contrast(50%) brightness(125%)',
-                            } : undefined
-                        }
-                        variant="determinate"
-                        value={this.state.progress}
+    render = () => (
+        <div>
+            <div className={styles.progressBar}>
+                <LinearProgress
+                    color={this.state.isError ? 'primary' : 'secondary'}
+                    style={
+                        this.state.isError ? {
+                            backgroundColor: 'var(--md-primary-red)',
+                            filter: 'contrast(50%) brightness(125%)',
+                        } : undefined
+                    }
+                    variant="determinate"
+                    value={this.state.progress}
+                />
+            </div>
+            <div className={styles.results}>
+                <div>
+                    <InputLabel>Algorithm</InputLabel>
+                    <Input
+                        value={this.props.hashingAlgorithm}
                     />
                 </div>
-                <div className={styles.results}>
-                    <div>
-                        <InputLabel>Algorithm</InputLabel>
-                        <Input
-                            value={this.props.hashingAlgorithm}
-                        />
-                    </div>
-                    <div>
-                        <InputLabel>File</InputLabel>
-                        <Input
-                            value={this.props.file.name}
-                        />
-                    </div >
-                    <div>
-                        <InputLabel>Size</InputLabel>
-                        <Input
-                            value={bytes(this.props.file.size)}
-                        />
-                    </div >
-                    <div>
-                        <InputLabel>Duration</InputLabel>
-                        <Input
-                            disabled={this.state.hashResult ? false : true}
-                            value={this.state.hashResult ? this.state.hashResult.duration : ''}
-                        />
-                    </div >
-                    <div>
-                        <InputLabel>Hash</InputLabel>
-                        <Input
-                            className={
-                                this.state.hashResult
-                                    ? this.props.comparison
-                                        ? this.props.comparison === this.state.hashResult.hash
-                                            ? styles.sameHashes
-                                            : styles.differentHashes
-                                        : styles.noComparisonHash
-                                    : ''
-                            }
-                            disabled={this.state.hashResult ? false : true}
-                            value={this.state.hashResult ? this.state.hashResult.hash : ''}
-                        />
-                    </div >
-                    {this.props.comparison && <div>
-                        <InputLabel>Comparison</InputLabel>
-                        <Input
-                            value={this.props.comparison ? this.props.comparison : ''}
-                        />
-                    </div>
-                    }
+                <div>
+                    <InputLabel>File</InputLabel>
+                    <Input
+                        value={this.props.file.name}
+                    />
                 </div >
+                <div>
+                    <InputLabel>Size</InputLabel>
+                    <Input
+                        value={bytes(this.props.file.size)}
+                    />
+                </div >
+                <div>
+                    <InputLabel>Duration</InputLabel>
+                    <Input
+                        disabled={this.state.hashResult ? false : true}
+                        value={this.state.hashResult ? this.state.hashResult.duration : ''}
+                    />
+                </div >
+                <div>
+                    <InputLabel>Hash</InputLabel>
+                    <Input
+                        className={
+                            this.state.hashResult
+                                ? this.props.comparison
+                                    ? this.props.comparison === this.state.hashResult.hash
+                                        ? styles.sameHashes
+                                        : styles.differentHashes
+                                    : styles.noComparisonHash
+                                : ''
+                        }
+                        disabled={this.state.hashResult ? false : true}
+                        value={this.state.hashResult ? this.state.hashResult.hash : ''}
+                    />
+                </div >
+                {this.props.comparison && <div>
+                    <InputLabel>Comparison</InputLabel>
+                    <Input
+                        value={this.props.comparison ? this.props.comparison : ''}
+                    />
+                </div>
+                }
             </div >
-        );
-    }
+        </div >
+    );
 
-    /**
-     * Updates the component's progress state.
-     *
-     * @private
-     * @param {number} progress the updated progress status
-     * @memberof HashingProcess
-     */
-    private updateProgress(progress: number): void {
+    private updateProgress = (progress: number) => {
         this.setState({
             progress: progress,
         });
     }
 
 }
+
+export default HashingProcess;
