@@ -1,0 +1,62 @@
+name: Build
+on: [push]
+
+jobs:
+  build-npm:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js v${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Cache node_modules
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.npm
+            **/node_modules
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
+      - name: Install Dependencies
+        run: npm ci
+      - name: Build
+        run: npm run build
+
+  quality-lint:
+    runs-on: ubuntu-latest
+    needs: build-npm
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use cached node_modules
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.npm
+            **/node_modules
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
+      - name: Run linter
+        run: npm run lint
+
+  quality-test:
+    runs-on: ubuntu-latest
+    needs: build-npm
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use cached node_modules
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.npm
+            **/node_modules
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
+      - name: Run tests
+        run: npm test

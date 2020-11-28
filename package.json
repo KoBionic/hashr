@@ -1,0 +1,159 @@
+{
+  "name": "HashR",
+  "version": "20.04.0",
+  "private": true,
+  "description": "An easy to use file hashing utility working with multiple algorithms.",
+  "keywords": [
+    "crypto",
+    "digest",
+    "electron",
+    "hashing",
+    "node",
+    "react",
+    "typescript"
+  ],
+  "homepage": "",
+  "bugs": {
+    "url": "https://github.com/kobionic/hashr/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kobionic/hashr.git"
+  },
+  "license": "Apache-2.0",
+  "author": "Jeremie Rodriguez <jeremie.rodriguez@kobionic.com> (https://github.com/jeremiergz)",
+  "main": "main/index.js",
+  "scripts": {
+    "build": "run-p clean build:electron build:renderer",
+    "build:electron": "tsc --project electron",
+    "build:renderer": "react-scripts build",
+    "clean": "rimraf build dist main",
+    "eject": "react-scripts eject",
+    "lint": "run-p lint:eslint lint:tsc",
+    "lint:eslint": "eslint --ext ts,tsx src",
+    "lint:tsc": "tsc --noEmit",
+    "prepackage": "npm run build",
+    "package": "electron-builder -lmw --x64",
+    "start": "electron .",
+    "start:w": "BROWSER=none NODE_OPTIONS=--max_old_space_size=4096 react-scripts start renderer",
+    "test": "CI=true react-scripts test"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "dependencies": {
+    "electron-serve": "1.0.0",
+    "ms": "2.1.2"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
+    "@kobionic/eslint-config-typescript": "^3.1.1",
+    "@kobionic/eslint-config-typescript-react": "^1.0.7",
+    "@kobionic/react-compose": "^1.0.0",
+    "@material-ui/core": "^4.11.1",
+    "@material-ui/icons": "^4.9.1",
+    "@testing-library/jest-dom": "^5.11.6",
+    "@testing-library/react": "^11.2.2",
+    "@testing-library/user-event": "^12.2.2",
+    "@types/bytes": "^3.1.0",
+    "@types/jest": "^26.0.15",
+    "@types/ms": "^0.7.31",
+    "@types/node": "^12.19.7",
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "bytes": "^3.1.0",
+    "electron": "^11.0.3",
+    "electron-builder": "^22.9.1",
+    "eslint": "^7.14.0",
+    "husky": "^4.3.0",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.2.1",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-scripts": "4.0.1",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.1.2"
+  },
+  "engines": {
+    "node": ">=12"
+  },
+  "build": {
+    "appId": "com.kobionic.hashr",
+    "copyright": "Copyright Ⓒ 2020 KoBionic",
+    "deb": {
+      "packageCategory": "utils"
+    },
+    "dmg": {
+      "background": "resources/background.png",
+      "contents": [
+        {
+          "x": 135,
+          "y": 220
+        },
+        {
+          "x": 405,
+          "y": 220,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    },
+    "extends": null,
+    "files": [
+      "build/",
+      "main/",
+      "resources/icon.png"
+    ],
+    "icon": "resources/icon.png",
+    "linux": {
+      "category": "Utility",
+      "icon": "resources/icon.png",
+      "synopsis": "An easy to use file hashing utility working with multiple algorithms.",
+      "target": [
+        "AppImage",
+        "deb",
+        "rpm",
+        "snap",
+        "tar.gz"
+      ]
+    },
+    "mac": {
+      "category": "public.app-category.utilities",
+      "identity": null,
+      "target": [
+        "dmg"
+      ]
+    },
+    "nsis": {
+      "deleteAppDataOnUninstall": true,
+      "oneClick": true,
+      "runAfterFinish": true
+    },
+    "productName": "HashR",
+    "win": {
+      "target": [
+        "nsis"
+      ]
+    }
+  }
+}
