@@ -229,12 +229,13 @@ Object {
             class="MuiStep-root MuiStep-vertical"
           >
             <button
-              class="MuiButtonBase-root MuiStepButton-root MuiStepButton-vertical makeStyles-stepButton-1"
-              tabindex="0"
+              class="MuiButtonBase-root MuiStepButton-root MuiStepButton-vertical makeStyles-stepButton-1 Mui-disabled"
+              disabled=""
+              tabindex="-1"
               type="button"
             >
               <span
-                class="MuiStepLabel-root MuiStepLabel-vertical"
+                class="MuiStepLabel-root MuiStepLabel-vertical Mui-disabled"
               >
                 <span
                   class="MuiStepLabel-iconContainer"
@@ -270,9 +271,6 @@ Object {
                   </span>
                 </span>
               </span>
-              <span
-                class="MuiTouchRipple-root MuiStepButton-touchRipple"
-              />
             </button>
             <div
               class="MuiStepContent-root"
@@ -291,12 +289,13 @@ Object {
             class="MuiStep-root MuiStep-vertical"
           >
             <button
-              class="MuiButtonBase-root MuiStepButton-root MuiStepButton-vertical makeStyles-stepButton-1"
-              tabindex="0"
+              class="MuiButtonBase-root MuiStepButton-root MuiStepButton-vertical makeStyles-stepButton-1 Mui-disabled"
+              disabled=""
+              tabindex="-1"
               type="button"
             >
               <span
-                class="MuiStepLabel-root MuiStepLabel-vertical"
+                class="MuiStepLabel-root MuiStepLabel-vertical Mui-disabled"
               >
                 <span
                   class="MuiStepLabel-iconContainer"
@@ -332,9 +331,6 @@ Object {
                   </span>
                 </span>
               </span>
-              <span
-                class="MuiTouchRipple-root MuiStepButton-touchRipple"
-              />
             </button>
             <div
               class="MuiStepContent-root MuiStepContent-last"
@@ -537,7 +533,7 @@ Object {
               <span
                 class="MuiBox-root MuiBox-root-20"
               >
-                20.4.0
+                20.11.0
               </span>
             </div>
           </a>
@@ -770,12 +766,13 @@ Object {
           class="MuiStep-root MuiStep-vertical"
         >
           <button
-            class="MuiButtonBase-root MuiStepButton-root MuiStepButton-vertical makeStyles-stepButton-1"
-            tabindex="0"
+            class="MuiButtonBase-root MuiStepButton-root MuiStepButton-vertical makeStyles-stepButton-1 Mui-disabled"
+            disabled=""
+            tabindex="-1"
             type="button"
           >
             <span
-              class="MuiStepLabel-root MuiStepLabel-vertical"
+              class="MuiStepLabel-root MuiStepLabel-vertical Mui-disabled"
             >
               <span
                 class="MuiStepLabel-iconContainer"
@@ -811,9 +808,6 @@ Object {
                 </span>
               </span>
             </span>
-            <span
-              class="MuiTouchRipple-root MuiStepButton-touchRipple"
-            />
           </button>
           <div
             class="MuiStepContent-root"
@@ -832,12 +826,13 @@ Object {
           class="MuiStep-root MuiStep-vertical"
         >
           <button
-            class="MuiButtonBase-root MuiStepButton-root MuiStepButton-vertical makeStyles-stepButton-1"
-            tabindex="0"
+            class="MuiButtonBase-root MuiStepButton-root MuiStepButton-vertical makeStyles-stepButton-1 Mui-disabled"
+            disabled=""
+            tabindex="-1"
             type="button"
           >
             <span
-              class="MuiStepLabel-root MuiStepLabel-vertical"
+              class="MuiStepLabel-root MuiStepLabel-vertical Mui-disabled"
             >
               <span
                 class="MuiStepLabel-iconContainer"
@@ -873,9 +868,6 @@ Object {
                 </span>
               </span>
             </span>
-            <span
-              class="MuiTouchRipple-root MuiStepButton-touchRipple"
-            />
           </button>
           <div
             class="MuiStepContent-root MuiStepContent-last"
@@ -1078,7 +1070,7 @@ Object {
             <span
               class="MuiBox-root MuiBox-root-20"
             >
-              20.4.0
+              20.11.0
             </span>
           </div>
         </a>
