@@ -1,4 +1,4 @@
-import { app, BrowserWindow, screen } from 'electron';
+import { app, BrowserWindow, nativeTheme, screen } from 'electron';
 import serve from 'electron-serve';
 import path from 'path';
 
@@ -10,9 +10,12 @@ const WINDOW_WIDTH = 700;
 
 function createWindow() {
   try {
+    nativeTheme.themeSource = 'dark';
+
     const bounds = screen.getPrimaryDisplay().bounds;
     const x = Math.ceil(bounds.x + (bounds.width - WINDOW_WIDTH) / 2);
     const y = Math.ceil(bounds.y + (bounds.height - WINDOW_HEIGHT) / 2);
+
     mainWindow = new BrowserWindow({
       autoHideMenuBar: true,
       backgroundColor: '#21252b',
