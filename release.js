@@ -26,7 +26,11 @@ async function computeNextVersion() {
   const nextMajor = parseInt(date.getFullYear().toString().substring(2, 4), 10);
   const nextMinor = date.getMonth() + 1;
   const nextPatch = nextMajor === major && nextMinor === minor ? patch + 1 : 0;
-  const parts = [nextMajor.toString().padStart(2, 0), nextMinor.toString().padStart(2, 0), nextPatch];
+  const parts = [
+    nextMajor.toString().padStart(2, 0),
+    nextMinor.toString().padStart(2, 0),
+    nextPatch,
+  ];
   return parts.join('.');
 }
 
@@ -68,11 +72,10 @@ function parseOptions() {
       await manuallyApproveVersion(version);
     }
 
-    // 3. Go on master branch & rebase on develop
-    console.log('Checkout master branch');
-    await exec('git checkout master');
-    console.log('Rebase master branch on develop');
-    await exec('git rebase develop');
+    // 3. Go on main branch & rebase on develop
+    console.log('Checkout main branch');
+    await exec('git checkout main');
+    await exec('git pull');
 
     // 4. Bump package.json & update package-lock.json
     console.log('Bump package.json version');
@@ -87,16 +90,8 @@ function parseOptions() {
     await exec(`git commit -m 'chore: release v${version}'`);
     console.log('Tag release commit');
     await exec(`git tag -a '${version}' -m 'release v${version}'`);
-    console.log('Push new master version');
+    console.log('Push new main version');
     await exec('git push --follow-tags');
-
-    // 6. Go back to develop branch, rebase on released master & push it to remote
-    console.log('Checkout develop branch');
-    await exec('git checkout develop');
-    console.log('Rebase develop branch on master');
-    await exec('git rebase master');
-    console.log('Push develop branch');
-    await exec('git push');
   } catch (err) {
     exit(err.message);
   }
