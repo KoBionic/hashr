@@ -33,6 +33,7 @@ const HashingProcess: React.FC<HashingProcessProps> = ({ comparison, onProcess }
   const [hasError, setHasError] = useState(false);
   const [progress, setProgress] = useState(0);
   const [hashResult, setHashResult] = useState<DigestResult>(null);
+
   useEffect(() => {
     return api.crypto.onError(err => {
       setHasError(true);
@@ -40,6 +41,7 @@ const HashingProcess: React.FC<HashingProcessProps> = ({ comparison, onProcess }
       showToast({ msg: err.message, type: 'error' });
     });
   }, []);
+
   useEffect(() => {
     return api.crypto.onProgress((p, d) => {
       if (d) {
@@ -58,10 +60,12 @@ const HashingProcess: React.FC<HashingProcessProps> = ({ comparison, onProcess }
       setProgress(p);
     });
   }, []);
+
   useEffect(() => {
     api.crypto.hashFile(file.path, algorithm, comparison);
     onProcess(true);
   }, []);
+
   return (
     <Box width="100%">
       <Box marginBottom={2}>

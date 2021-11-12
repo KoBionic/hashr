@@ -1,9 +1,10 @@
+const companyURL = 'https://github.com/kobionic';
 const name = process.env.REACT_APP_NAME;
-const repositoryURL = process.env.REACT_APP_REPOSITORY_URL.replace(/git\+|\.git/g, '');
+const repositoryURL = 'https://github.com/kobionic/hashr';
 const version = process.env.REACT_APP_VERSION;
 
 const config = {
-  companyURL: 'https://github.com/kobionic',
+  companyURL,
   name,
   releaseURL: `${repositoryURL}/releases/tag`,
   repositoryURL,

@@ -10,7 +10,9 @@ const DropZone: React.FC<DropZoneProps> = ({ active }) => {
   const isDragged = useDrag();
   const [droppedFile, setDroppedFile] = useState<APIFile>();
   const [, setFile] = useFile();
+
   const handleDropFile = (e: DragEvent) => setDroppedFile(e.dataTransfer.files[0] as APIFile);
+
   useEffect(() => {
     (async () => {
       if (droppedFile) {
@@ -19,6 +21,7 @@ const DropZone: React.FC<DropZoneProps> = ({ active }) => {
       }
     })();
   }, [droppedFile]);
+
   return (
     <Box
       alignItems="center"

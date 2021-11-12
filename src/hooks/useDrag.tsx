@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
  */
 function useDrag() {
   const [isDragged, setIsDragged] = useState(false);
+
   useEffect(() => {
     const handleDragEnter = () => setIsDragged(true);
     const handleDragDrop = () => setIsDragged(false);
@@ -22,6 +23,7 @@ function useDrag() {
       };
     }
   }, []);
+
   return isDragged;
 }
 

@@ -65,9 +65,11 @@ const ToastsProvider: React.FC = ({ children }) => {
   const handleClose = () => setIsOpened(false);
   const contentClasses = [classes.content, classes[toast?.type]].filter(x => x).join(' ');
   const Icon = useMemo(() => iconsMapping[toast?.type], [toast]);
+
   useEffect(() => {
     if (toast) setIsOpened(true);
   }, [toast]);
+
   return (
     <ToastsContext.Provider value={setToast}>
       <Snackbar

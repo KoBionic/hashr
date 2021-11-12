@@ -7,13 +7,13 @@ const stat = promisify(legacyStat);
  *
  * @param filePath the path of the file to check
  */
-async function isFile(filePath: string) {
+export async function isFile(filePath: string) {
   let isValid = false;
+
   try {
     const stats = await stat(filePath);
     isValid = stats.isFile();
   } catch {}
+
   return isValid;
 }
-
-export { isFile };

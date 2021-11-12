@@ -1,17 +1,16 @@
 import { contextBridge, ipcRenderer, shell } from 'electron';
 import Event from './models/Event';
-import { getAlgorithmsInfo, hashFile } from './utils/crypto';
+import { getAlgorithms, hashFile } from './utils/crypto';
 import { isFile } from './utils/fs';
 
 contextBridge.exposeInMainWorld('api', {
   crypto: {
-    getAlgorithms: getAlgorithmsInfo,
-    hashFile: (filePath: string, algorithm: string, comparisonString: string) => {
-      hashFile(filePath, algorithm, comparisonString);
-    },
+    getAlgorithms,
+    hashFile,
     onError: (callback: (...params: unknown[]) => void) => {
       const listener = (...args: unknown[]) => callback(...args);
       ipcRenderer.on(Event.HASH_FILE_ERROR, listener);
+
       return () => {
         ipcRenderer.removeListener(Event.HASH_FILE_ERROR, listener);
       };
@@ -19,6 +18,7 @@ contextBridge.exposeInMainWorld('api', {
     onProgress: (callback: (...params: unknown[]) => void) => {
       const listener = (...args: unknown[]) => callback(...args);
       ipcRenderer.on(Event.HASH_FILE_PROGRESS, listener);
+
       return () => {
         ipcRenderer.removeListener(Event.HASH_FILE_PROGRESS, listener);
       };
@@ -31,6 +31,7 @@ contextBridge.exposeInMainWorld('api', {
   fs: {
     isValidFile: async (filePath: string) => {
       const isValid = await isFile(filePath);
+
       return isValid;
     },
   },

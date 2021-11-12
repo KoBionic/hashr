@@ -5,6 +5,7 @@ const FileContext = createContext<FileContext>([null, () => undefined]);
 
 const FileProvider: React.FC = ({ children }) => {
   const [file, setFile] = useState<APIFile>(null);
+
   return <FileContext.Provider value={[file, setFile]}>{children}</FileContext.Provider>;
 };
 

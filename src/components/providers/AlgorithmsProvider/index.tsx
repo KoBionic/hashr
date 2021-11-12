@@ -15,6 +15,7 @@ const AlgorithmsProvider: React.FC = ({ children }) => {
   const api = useAPI();
   const { algorithms, defaultAlgorithm } = useMemo(() => api.crypto.getAlgorithms(), []);
   const [algorithm, setAlgorithm] = useState(defaultAlgorithm);
+
   return (
     <AlgorithmsContext.Provider value={[algorithms, algorithm, setAlgorithm, defaultAlgorithm]}>
       {children}

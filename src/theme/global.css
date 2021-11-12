@@ -31,12 +31,14 @@
   --md-secondary-yellow: #f57f17;
   --animation-cubic-bezier: cubic-bezier(0.4, 0, 0.2, 1);
 }
+
 /* Override StepLabel component here as seems impossible using makeStyles */
 .MuiStepLabel-active {
   font-size: 16px !important;
   font-weight: bold !important;
   transition: all 500ms var(--animation-cubic-bezier) !important;
 }
+
 @keyframes fade-and-scale {
   from {
     opacity: 0;
@@ -47,6 +49,7 @@
     transform: scale(1, 1);
   }
 }
+
 @keyframes pulse {
   0% {
     box-shadow: 0 0 0 0 rgba(var(--md-primary-white-rgb), 0.5);
@@ -58,11 +61,13 @@
     box-shadow: 0 0 0 0 rgba(var(--md-primary-white-rgb), 0);
   }
 }
+
 @font-face {
   font-family: 'Maken';
   src: url('../assets/fonts/maken-bold.woff2') format('woff2'),
     url('../assets/fonts/maken-bold.woff') format('woff');
 }
+
 @font-face {
   font-family: 'RussianQuality';
   src: url('../assets/fonts/russian-quality.woff2') format('woff2'),

@@ -43,6 +43,7 @@ const App: React.FC = () => {
   const [comparison, setComparison] = useState<string>();
   const [isFinished, setIsFinished] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
+
   const handleComparisonChange = (value: string) => setComparison(value);
   const handleChangeStep = (selector?: '+' | '-') => () => {
     if (!isProcessing && file) {
@@ -58,7 +59,9 @@ const App: React.FC = () => {
       setIsFinished(false);
     }
   };
+
   const handleSelectStep = (step: number) => () => setActiveStep(step);
+
   const handleKeydown = (e: KeyboardEvent) => {
     switch (e.key) {
       case 'ArrowDown':
@@ -79,10 +82,12 @@ const App: React.FC = () => {
       default:
     }
   };
+
   const handleProcess = (isProcessing: boolean) => {
     setIsProcessing(isProcessing);
     setIsFinished(!isProcessing);
   };
+
   const getStepContent = (step: number) => {
     let content: JSX.Element | null;
     switch (step) {
@@ -107,6 +112,7 @@ const App: React.FC = () => {
     }
     return content;
   };
+
   useEffect(() => {
     if (typeof window !== 'undefined') {
       window.addEventListener('keydown', handleKeydown);
@@ -115,6 +121,7 @@ const App: React.FC = () => {
       };
     }
   }, [handleKeydown]);
+
   return (
     <>
       <CssBaseline />

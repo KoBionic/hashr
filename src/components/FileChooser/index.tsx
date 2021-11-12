@@ -10,6 +10,7 @@ const FileChooser: React.FC<FileChooserProps> = ({
   onComparisonChange,
 }) => {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => onComparisonChange(e.target.value);
+
   return (
     <Box display="flex" flexDirection="column" position="relative" width="100%">
       <InputLabel>Compare To</InputLabel>

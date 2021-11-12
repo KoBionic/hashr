@@ -15,6 +15,7 @@ const useStyles = makeStyles(
 
 const Link: React.FC<LinkProps> = ({ children, ...rest }) => {
   const classes = useStyles();
+
   return (
     <Box className={classes.a} component="a" {...rest}>
       {children}

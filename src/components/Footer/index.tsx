@@ -9,7 +9,9 @@ import Company from './Company';
 const Footer: React.FC = () => {
   const api = useAPI();
   const { companyURL, releaseURL, repositoryURL, version } = config;
+
   const handleOpenInBrowser = (url: string) => () => api.shell.openInBrowser(url);
+
   return (
     <Box
       borderTop="1px solid #3f3f3f"

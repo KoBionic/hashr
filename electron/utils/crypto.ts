@@ -10,13 +10,11 @@ const stat = promisify(statLegacy);
 /**
  * Returns information about supported hashing algorithms & the default one.
  */
-function getAlgorithmsInfo() {
+export function getAlgorithms() {
   const algorithms = getHashes();
   const defaultAlgorithm = algorithms.find(a => a === 'sha256') || algorithms[0];
-  return {
-    algorithms,
-    defaultAlgorithm,
-  };
+
+  return { algorithms, defaultAlgorithm };
 }
 
 /**
@@ -27,14 +25,18 @@ function getAlgorithmsInfo() {
  * @param hashingAlgorithm the hashing algorithm to use
  * @param comparisonString the hash to compare to
  */
-async function hashFile(fileToDigest: string, hashingAlgorithm: string, comparisonString?: string) {
+export async function hashFile(
+  fileToDigest: string,
+  hashingAlgorithm: string,
+  comparisonString?: string,
+) {
   try {
     const filePath = path.resolve(fileToDigest);
     const fileSize = (await stat(filePath)).size;
     const metricsStart = Date.now();
 
     // Set hashing algorithm if in enum, else use default one
-    const { algorithms, defaultAlgorithm } = getAlgorithmsInfo();
+    const { algorithms, defaultAlgorithm } = getAlgorithms();
     const lowercaseAlg = hashingAlgorithm.toLowerCase();
     const algorithm = algorithms.find(a => a === lowercaseAlg) || defaultAlgorithm;
 
@@ -80,5 +82,3 @@ async function hashFile(fileToDigest: string, hashingAlgorithm: string, comparis
     ipcRenderer.emit(Event.HASH_FILE_ERROR, err);
   }
 }
-
-export { getAlgorithmsInfo, hashFile };

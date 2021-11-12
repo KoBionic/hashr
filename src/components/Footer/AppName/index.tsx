@@ -4,6 +4,7 @@ import React from 'react';
 
 const AppName: React.FC<AppNameProps> = ({ onClick }) => {
   const theme = useTheme();
+
   return (
     <Link onClick={onClick}>
       <Box fontFamily="RussianQuality" fontSize={20} fontWeight="bold">
