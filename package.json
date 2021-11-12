@@ -1,6 +1,6 @@
 {
   "name": "HashR",
-  "version": "21.11.2",
+  "version": "21.11.3",
   "private": true,
   "description": "An easy to use file hashing utility working with multiple algorithms.",
   "keywords": [
