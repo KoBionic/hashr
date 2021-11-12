@@ -145,7 +145,7 @@ const App: React.FC = () => {
               <Step completed={activeStep > index || isFinished} key={label}>
                 <StepButton
                   className={classes.stepButton}
-                  disabled={isProcessing || activeStep < index}
+                  disabled={isProcessing || activeStep <= index}
                   onClick={handleSelectStep(index)}
                 >
                   {label}

@@ -15,12 +15,13 @@ Object {
             class="MuiStep-root MuiStep-vertical"
           >
             <button
-              class="MuiButtonBase-root MuiStepButton-root MuiStepButton-vertical makeStyles-stepButton-1"
-              tabindex="0"
+              class="MuiButtonBase-root MuiStepButton-root MuiStepButton-vertical makeStyles-stepButton-1 Mui-disabled"
+              disabled=""
+              tabindex="-1"
               type="button"
             >
               <span
-                class="MuiStepLabel-root MuiStepLabel-vertical"
+                class="MuiStepLabel-root MuiStepLabel-vertical Mui-disabled"
               >
                 <span
                   class="MuiStepLabel-iconContainer"
@@ -56,16 +57,13 @@ Object {
                   </span>
                 </span>
               </span>
-              <span
-                class="MuiTouchRipple-root MuiStepButton-touchRipple"
-              />
             </button>
             <div
               class="MuiStepContent-root"
               icon="1"
             >
               <div
-                class="MuiCollapse-container MuiStepContent-transition MuiCollapse-entered"
+                class="MuiCollapse-root MuiStepContent-transition MuiCollapse-entered"
                 style="min-height: 0px;"
               >
                 <div
@@ -552,12 +550,13 @@ Object {
           class="MuiStep-root MuiStep-vertical"
         >
           <button
-            class="MuiButtonBase-root MuiStepButton-root MuiStepButton-vertical makeStyles-stepButton-1"
-            tabindex="0"
+            class="MuiButtonBase-root MuiStepButton-root MuiStepButton-vertical makeStyles-stepButton-1 Mui-disabled"
+            disabled=""
+            tabindex="-1"
             type="button"
           >
             <span
-              class="MuiStepLabel-root MuiStepLabel-vertical"
+              class="MuiStepLabel-root MuiStepLabel-vertical Mui-disabled"
             >
               <span
                 class="MuiStepLabel-iconContainer"
@@ -593,16 +592,13 @@ Object {
                 </span>
               </span>
             </span>
-            <span
-              class="MuiTouchRipple-root MuiStepButton-touchRipple"
-            />
           </button>
           <div
             class="MuiStepContent-root"
             icon="1"
           >
             <div
-              class="MuiCollapse-container MuiStepContent-transition MuiCollapse-entered"
+              class="MuiCollapse-root MuiStepContent-transition MuiCollapse-entered"
               style="min-height: 0px;"
             >
               <div

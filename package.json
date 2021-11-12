@@ -12,7 +12,7 @@
     "react",
     "typescript"
   ],
-  "homepage": "",
+  "homepage": "https://github.com/kobionic/hashr",
   "bugs": {
     "url": "https://github.com/kobionic/hashr/issues"
   },
@@ -27,7 +27,7 @@
     "build": "run-p clean build:electron build:renderer",
     "build:electron": "tsc --project electron",
     "build:renderer": "react-scripts build",
-    "clean": "rimraf build dist main",
+    "clean": "rimraf build coverage dist main",
     "eject": "react-scripts eject",
     "lint": "run-p lint:eslint lint:tsc",
     "lint:eslint": "eslint --ext ts,tsx src",
@@ -37,16 +37,6 @@
     "start": "electron .",
     "start:w": "BROWSER=none NODE_OPTIONS=--max_old_space_size=4096 react-scripts start renderer",
     "test": "CI=true react-scripts test --coverage --verbose"
-  },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
-  },
-  "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ]
   },
   "browserslist": {
     "production": [
@@ -61,45 +51,45 @@
     ]
   },
   "dependencies": {
-    "electron-serve": "1.0.0",
+    "electron-serve": "1.1.0",
     "ms": "2.1.3"
   },
   "devDependencies": {
-    "@commitlint/cli": "^11.0.0",
-    "@commitlint/config-conventional": "^11.0.0",
-    "@kobionic/eslint-config-typescript": "^3.1.1",
-    "@kobionic/eslint-config-typescript-react": "^1.0.7",
-    "@kobionic/react-compose": "^1.0.2",
-    "@material-ui/core": "^4.11.2",
+    "@commitlint/cli": "^14.1.0",
+    "@commitlint/config-conventional": "^14.1.0",
+    "@kobionic/eslint-config-typescript": "^4.0.3",
+    "@kobionic/eslint-config-typescript-react": "^2.0.3",
+    "@material-ui/core": "^4.12.3",
     "@material-ui/icons": "^4.11.2",
-    "@testing-library/jest-dom": "^5.11.6",
-    "@testing-library/react": "^11.2.2",
-    "@testing-library/user-event": "^12.6.0",
-    "@types/bytes": "^3.1.0",
-    "@types/jest": "^26.0.19",
+    "@testing-library/jest-dom": "^5.15.0",
+    "@testing-library/react": "^12.1.2",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/bytes": "^3.1.1",
+    "@types/jest": "^27.0.2",
     "@types/ms": "^0.7.31",
-    "@types/node": "^12.19.9",
-    "@types/react": "^17.0.0",
-    "@types/react-dom": "^17.0.0",
+    "@types/node": "^16.11.7",
+    "@types/react": "^17.0.34",
+    "@types/react-dom": "^17.0.11",
     "bytes": "^3.1.0",
-    "electron": "^11.1.1",
-    "electron-builder": "^22.10.4",
-    "eslint": "^7.16.0",
-    "husky": "^4.3.6",
+    "electron": "^15.3.1",
+    "electron-builder": "^22.14.7",
+    "eslint": "^8.2.0",
+    "husky": "^7.0.4",
+    "lint-staged": "^11.2.6",
     "npm-run-all": "^4.1.5",
-    "prettier": "^2.2.1",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "react-scripts": "4.0.1",
+    "prettier": "^2.4.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-scripts": "4.0.3",
     "rimraf": "^3.0.2",
-    "typescript": "^4.1.3"
+    "typescript": "^4.4.4"
   },
   "engines": {
-    "node": ">=12"
+    "node": ">=16"
   },
   "build": {
     "appId": "com.kobionic.hashr",
-    "copyright": "Copyright Ⓒ 2020 KoBionic",
+    "copyright": "Copyright Ⓒ 2021 KoBionic",
     "deb": {
       "packageCategory": "utils"
     },
