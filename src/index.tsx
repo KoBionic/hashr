@@ -1,12 +1,12 @@
-import { ThemeProvider } from '@material-ui/core/styles';
-import AlgorithmsProvider from 'components/providers/AlgorithmsProvider';
-import FileProvider from 'components/providers/FileProvider';
-import ToastsProvider from 'components/providers/ToastsProvider';
+import { ThemeProvider } from '@mui/material/styles';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import theme from 'theme';
-import App from './App';
-import Compose from './Compose';
+import App from 'renderer/App';
+import AlgorithmsProvider from 'renderer/components/providers/AlgorithmsProvider';
+import FileProvider from 'renderer/components/providers/FileProvider';
+import ToastsProvider from 'renderer/components/providers/ToastsProvider';
+import Compose from 'renderer/Compose';
+import theme from 'renderer/theme';
 
 ReactDOM.render(
   <React.StrictMode>
