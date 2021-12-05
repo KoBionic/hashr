@@ -33,7 +33,7 @@
     "lint:eslint": "eslint --ext ts,tsx src",
     "lint:tsc": "tsc --noEmit",
     "prepackage": "npm run build",
-    "package": "electron-builder -m --x64",
+    "package": "electron-builder -lmw --x64",
     "postinstall": "electron-builder install-app-deps",
     "start": "electron build/electron",
     "start:w": "BROWSER=none NODE_OPTIONS=--max_old_space_size=4096 react-scripts start renderer",
